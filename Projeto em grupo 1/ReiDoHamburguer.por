@@ -1,7 +1,7 @@
 programa
 {
 	inclua biblioteca Texto --> txt
-	inclua biblioteca Tipos --> tp
+	inclua biblioteca Tipos --> tp
 	
 	funcao inicio()
 	{
@@ -9,56 +9,46 @@ programa
 		//------------------------------------------ VARIÁVEIS ------------------------------------------
 		//-----------------------------------------------------------------------------------------------
 		
-		//[1] ------------ variáveis essenciais
+		//------------ variáveis do banco
 		const cadeia NOME = "Rei do Hamburguer"
 		const cadeia SLOGAN = "Matando sua fome para que ela nao mate você!"
 		const inteiro qntdProdutos = 10
 		cadeia codigo[qntdProdutos]
-		const cadeia PRODUTO[qntdProdutos] = {"Royale c/ queijo","Quarteirão c/ queijo","Mentiroso","Grande Rei","Empilhador","Cheddar","Vegetariano","Frango","Abacaxi","Salada"}
+		const cadeia PRODUTO[qntdProdutos] = {"Royale c/ queijo","Quarteirão c/ queijo","Mentiroso","Grande Rei","Empilhador","Cheddar","Vegetariano","Frango","Abacaxi com barbecue","Lanche feliz"}
 		real valor[qntdProdutos]
 		inteiro estoque[qntdProdutos]
-		//[1] ------------ variaveis do menu
-		//[2] -------- indice do menu
+		//------------ variáveis da compra
+		inteiro produtoEscolhido = 0
+		cadeia codigoDigitado = ""
+		inteiro qntdDigitada = 0
+		real total = 0.0
+		//------------ variaveis do menu
+		//-------- indice do menu
 		const cadeia CARDAPIO = "CARDÁPIO"
 		const cadeia MENUCOD = "COD"
 		const cadeia MENUPRODUTO = "PRODUTO"
 		const cadeia MENUVALOR = "VALOR"
 		const cadeia MENUESTOQUE = "ESTOQUE"
-		//[2] -------- variáveis para consertar o espaço do menu
-		//[3] ---- cabecçalho
-		cadeia espacoCardapio = ""
-		cadeia espacoCabecalhoCodigo = ""
-		cadeia espacoCabecalhoProduto = ""
-		cadeia espacoCabecalhoValor = ""
-		cadeia espacoCabecalhoEstoque = ""
-		//[3] ---- itens
-		cadeia espacoCodigo = ""
-		cadeia espacoProduto = ""
-		cadeia espacoValor = ""
-		cadeia espacoEstoque =""
-		//[3] ---- divisória
+		//-------- variáveis para deixar o menu responsivo
+		cadeia espacoTitulo = ""
+		cadeia espacoMenu = ""
 		cadeia divisoria= ""
-		cadeia tamanhoDivisoria= ""
+		cadeia subDivisoria = ""
 		
 		//-----------------------------------------------------------------------------------------------
 		//------------------------ PREENCHIMENTO AUTOMÁTICO DAS OPÇÕES DO MENU --------------------------
 		//-----------------------------------------------------------------------------------------------
 		
-		//Autopreenche o código de todos por G6-i
 		para(inteiro i=0;i<qntdProdutos;i++){
+			//Autopreenche o código de todos por G6-i
 			codigo[i] = "G6-"+(i+1)
-			
-		}
-		//Autopreenche o valor de todos como 15.00
-		para(inteiro i=0;i<qntdProdutos;i++){
+			//Autopreenche o valor de todos como 15.00 ou 12.50, intercalando entre um e outro
 			se(i % 2 == 0){
 				valor[i] = 15.00
 			} senao {
 				valor[i] = 12.50
 			}
-		}
-		//Autopreenche o estoque de todos como 10
-		para(inteiro i=0;i<qntdProdutos;i++){
+			//Autopreenche o estoque de todos como 10
 			estoque[i] = 10
 		}
 
@@ -67,65 +57,92 @@ programa
 		//-----------------------------------------------------------------------------------------------
 		
 		//Nome e slogan
-		escreva("---------------------\n| ",txt.caixa_alta(NOME)," |\n------------------------------------------------\n")
-		escreva("| ",SLOGAN," |\n------------------------------------------------\n")
-		
-		///Conserta espaçamento do cabeçalho do código
-		espacoCabecalhoCodigo = consertarEspacamento(txt.numero_caracteres(MENUCOD),tamanhoDesejado(maiorOpcaoCadeia(codigo,qntdProdutos),MENUCOD))
-		///Conserta espaçamento do cabeçalho do produto
-		espacoCabecalhoProduto = consertarEspacamento(txt.numero_caracteres(MENUPRODUTO),tamanhoDesejado(maiorOpcaoCadeia(PRODUTO,qntdProdutos),MENUPRODUTO))
-		///Conserta espaçamento do cabeçalho do valor
-		espacoCabecalhoValor = consertarEspacamento(txt.numero_caracteres(MENUVALOR),tamanhoDesejado(maiorOpcaoReal(valor,qntdProdutos),MENUVALOR))
-		///Conserta espaçamento do cabeçalho do estoque
-		espacoCabecalhoEstoque = consertarEspacamento(txt.numero_caracteres(MENUESTOQUE),tamanhoDesejado(maiorOpcaoInteiro(estoque,qntdProdutos),MENUESTOQUE))
-		
-		//Calcula o tamanho da divisória(------) com base no tamanho final da tabela
-		tamanhoDivisoria = espacoCabecalhoCodigo+MENUCOD + espacoCabecalhoProduto+MENUPRODUTO + espacoCabecalhoValor+MENUVALOR + espacoCabecalhoEstoque+MENUESTOQUE
-		enquanto(txt.numero_caracteres(divisoria) < txt.numero_caracteres(tamanhoDivisoria)){
-			divisoria += "-"
-		}
-		enquanto(txt.numero_caracteres(espacoCardapio) < (txt.numero_caracteres(tamanhoDivisoria) / 2)){
-			espacoCardapio += " "
-		}
-		divisoria+="---------"
+		escreva("╔═══════════════════╗\n║ ",txt.caixa_alta(NOME)," ║ ",txt.caixa_alta(SLOGAN),"\n╚═══════════════════╝ ════════════════════════════════════════════\n")
 
-		
+		//Calcula o taqmanho da divisoria
+		divisoria = calcularTamanhoMenu(divisoria,qntdProdutos, "═", 0, codigo, MENUCOD, PRODUTO, MENUPRODUTO, valor, MENUVALOR, estoque, MENUESTOQUE)
+		espacoTitulo = (calcularTamanhoMenu(espacoTitulo,qntdProdutos, " ", 2, codigo, MENUCOD, PRODUTO, MENUPRODUTO, valor, MENUVALOR, estoque, MENUESTOQUE))
+		divisoria+="═════════"
+		//Calcula o tamanho da subDivisoria comn base na divisoria
+		enquanto(txt.numero_caracteres(subDivisoria) < txt.numero_caracteres(divisoria)){
+			subDivisoria += "-"
+		}
+
+		//Cabeçalho do menu de Opções
 		escreva("\n",divisoria)
-		escreva("\n|",espacoCardapio,CARDAPIO,espacoCardapio,"|")
+		escreva("\n║",espacoTitulo,CARDAPIO,espacoTitulo,"║")
 		escreva("\n",divisoria)
 
 		//-----------------------------------------------------------------------------------------------
 		//--------------------------------------- MENU DE OPÇÕES ----------------------------------------
 		//-----------------------------------------------------------------------------------------------
 		
-		//Escreve o cabeçalho do menu de opções
-		escreva("\n",MENUCOD,espacoCabecalhoCodigo," | ",MENUPRODUTO,espacoCabecalhoProduto," | ",MENUVALOR,espacoCabecalhoValor," | ",MENUESTOQUE,espacoCabecalhoEstoque,"\n")
+		///Conserta espaçamento do cabeçalho do código
+		espacoMenu = consertarEspacamento(MENUCOD,tamanhoDesejado(maiorOpcaoCadeia(codigo,qntdProdutos),MENUCOD))
+		escreva("\n",MENUCOD,espacoMenu," ║ ")
+		///Conserta espaçamento do cabeçalho do produto
+		espacoMenu = consertarEspacamento(MENUPRODUTO,tamanhoDesejado(maiorOpcaoCadeia(PRODUTO,qntdProdutos),MENUPRODUTO))
+		escreva(MENUPRODUTO,espacoMenu," ║ ")
+		///Conserta espaçamento do cabeçalho do valor
+		espacoMenu = consertarEspacamento(MENUVALOR,tamanhoDesejado(maiorOpcaoReal(valor,qntdProdutos),MENUVALOR))
+		escreva(MENUVALOR,espacoMenu," ║ ")
+		///Conserta espaçamento do cabeçalho do estoque
+		espacoMenu = consertarEspacamento(MENUESTOQUE,tamanhoDesejado(maiorOpcaoInteiro(estoque,qntdProdutos),MENUESTOQUE))
+		escreva(MENUESTOQUE,espacoMenu,"\n")
+		escreva(divisoria,"\n")
 
 		para(inteiro i=0;i<qntdProdutos;i++){
+			//escreve na tela o [ código | nome | valor | estoque ] da opção atual
 			
 			///Conserta espaçamento do código
-			espacoCodigo = consertarEspacamento(txt.numero_caracteres(codigo[i]),tamanhoDesejado(maiorOpcaoCadeia(codigo,qntdProdutos),MENUCOD))
-			///Conserta espaçamento do produto
-			espacoProduto = consertarEspacamento(txt.numero_caracteres(PRODUTO[i]),tamanhoDesejado(maiorOpcaoCadeia(PRODUTO,qntdProdutos),MENUPRODUTO))
-			///Conserta espaçamento do valor
-			espacoValor = consertarEspacamento(txt.numero_caracteres(tp.real_para_cadeia(valor[i])),tamanhoDesejado(maiorOpcaoReal(valor,qntdProdutos),MENUVALOR))
-			///Conserta espaçamento do estoque
-			espacoEstoque = consertarEspacamento(txt.numero_caracteres(tp.inteiro_para_cadeia(estoque[i],10)),tamanhoDesejado(maiorOpcaoInteiro(estoque,qntdProdutos),MENUESTOQUE))
-		
-			//escreve na tela o [ código | nome | valor | estoque ] da opção atual
-			escreva(divisoria,"\n")
-			escreva(codigo[i],espacoCodigo," | ",PRODUTO[i],espacoProduto," | ",valor[i],espacoValor," | ",estoque[i],espacoEstoque,"\n")
+			espacoMenu = consertarEspacamento(codigo[i],tamanhoDesejado(maiorOpcaoCadeia(codigo,qntdProdutos),MENUCOD))
+			escreva(codigo[i],espacoMenu," ║ ")
 			
-			//zera os espaços de codigo e produto
-			espacoCodigo = ""
-			espacoProduto = ""
+			///Conserta espaçamento do produto
+			espacoMenu = consertarEspacamento(PRODUTO[i],tamanhoDesejado(maiorOpcaoCadeia(PRODUTO,qntdProdutos),MENUPRODUTO))
+			escreva(PRODUTO[i],espacoMenu," ║ ")
+			
+			///Conserta espaçamento do valor
+			espacoMenu = consertarEspacamento(tp.real_para_cadeia(valor[i]),tamanhoDesejado(maiorOpcaoReal(valor,qntdProdutos),MENUVALOR))
+			escreva(valor[i],espacoMenu," ║ ")
+			
+			///Conserta espaçamento do estoque
+			espacoMenu = consertarEspacamento(tp.inteiro_para_cadeia(estoque[i],10),tamanhoDesejado(maiorOpcaoInteiro(estoque,qntdProdutos),MENUESTOQUE))
+			escreva(estoque[i],espacoMenu,"\n")
+
+			//DIVISÓRIA RESPONSIVA
+			escreva(divisoria,"\n")
 		}
-		inteiro a
-		a = maiorOpcaoReal(valor,qntdProdutos)
 
 		//-----------------------------------------------------------------------------------------------
-		//---------------------------------- FAZER CÓDIGO PARA COMPRA -----------------------------------
+		//------------------------------------  CÓDIGO PARA COMPRA --------------------------------------
 		//-----------------------------------------------------------------------------------------------
+		
+		escreva("\n",divisoria)
+		escreva("\n║",espacoTitulo,"Carrinho",espacoTitulo,"║")
+		escreva("\n",divisoria)
+		
+		escreva("\n╔═════════════════════════")
+		escreva("\n║ Código do produto: ")
+		leia(codigoDigitado)
+		escreva("╠",divisoria,"\n")
+		
+		para(produtoEscolhido=0;produtoEscolhido<qntdProdutos;produtoEscolhido++){
+			se(codigoDigitado ==  codigo[produtoEscolhido]){
+				escreva("║ ",codigo[produtoEscolhido]," ║ ",PRODUTO[produtoEscolhido]," ║ ",valor[produtoEscolhido]," ║ ",estoque[produtoEscolhido],"\n")
+				pare
+			}
+		}
+		escreva("║",subDivisoria,"\n")
+		
+		escreva("║ Quantidade: ")
+		leia(qntdDigitada)
+		escreva("║",subDivisoria,"\n")
+
+		total = valor[produtoEscolhido] * qntdDigitada
+		
+		escreva("║ Total: R$",total)
+		escreva("\n╚",divisoria,"\n")
 		
 	//------------------------------------------------------------------------------------------------
 	// FIM DO INÍCIO | FIM DO INÍCIO | FIM DO INÍCIO | FIM DO INÍCIO | FIM DO INÍCIO | FIM DO INÍCIO |
@@ -198,13 +215,38 @@ programa
 	//adiciona espaço(s) depois dos valores dos itens com os menores tamanhos da coluna
 	//(com base no maior item da coluna)
 	//pra tudo ter o mesmo tamanho na hora de mostrar na tela
-	funcao cadeia consertarEspacamento(inteiro tamanhoTexto, inteiro tamanhoFinal){
+	funcao cadeia consertarEspacamento(cadeia texto, inteiro tamanhoFinal){
 		cadeia espaco = ""
+		inteiro tamanhoTexto = txt.numero_caracteres(texto)
 		enquanto(tamanhoTexto < tamanhoFinal){
 			espaco += " "
 			tamanhoTexto++
 		}
 		retorne espaco
+	}
+
+
+	//Calcula o tamanho de todo o menu para retornar uma adição de caracteres que oculpem ele todo
+	funcao cadeia calcularTamanhoMenu(cadeia item,inteiro qntdProdutos, cadeia simbolo, inteiro dividir, cadeia codigo[], cadeia MENUCOD, cadeia PRODUTO[], cadeia MENUPRODUTO, real valor[], cadeia MENUVALOR, inteiro estoque[], cadeia MENUESTOQUE){
+		inteiro tamanho = 0
+		cadeia tamanhoFinal = item
+		tamanho = tamanhoDesejado(maiorOpcaoCadeia(codigo,qntdProdutos),MENUCOD)
+		///Conserta espaçamento do cabeçalho do produto
+		tamanho += tamanhoDesejado(maiorOpcaoCadeia(PRODUTO,qntdProdutos),MENUPRODUTO)
+		///Conserta espaçamento do cabeçalho do valor
+		tamanho += tamanhoDesejado(maiorOpcaoReal(valor,qntdProdutos),MENUVALOR)
+		///Conserta espaçamento do cabeçalho do estoque
+		tamanho += tamanhoDesejado(maiorOpcaoInteiro(estoque,qntdProdutos),MENUESTOQUE)
+		
+		se(dividir == 2){
+			tamanho = tamanho / 2
+		}
+		
+		enquanto(txt.numero_caracteres(tamanhoFinal) < tamanho){
+			tamanhoFinal += simbolo
+		}
+		
+		retorne tamanhoFinal
 	}
 }
 /* $$$ Portugol Studio $$$ 
@@ -212,9 +254,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 4170; 
+ * @POSICAO-CURSOR = 2379; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {espacoCabecalhoCodigo, 30, 9, 21};
+ * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
