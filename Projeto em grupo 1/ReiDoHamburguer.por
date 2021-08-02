@@ -22,6 +22,7 @@ programa
 		cadeia codigoDigitado = ""
 		inteiro qntdDigitada = 0
 		real total = 0.0
+		inteiro carrinho[qntdProdutos]
 		//------------ variaveis do menu
 		//-------- indice do menu
 		const cadeia CARDAPIO = "CARDÁPIO"
@@ -50,6 +51,7 @@ programa
 			}
 			//Autopreenche o estoque de todos como 10
 			estoque[i] = 10
+			carrinho[i] = 0
 		}
 
 		//-----------------------------------------------------------------------------------------------
@@ -139,8 +141,14 @@ programa
 		leia(qntdDigitada)
 		escreva("║",subDivisoria,"\n")
 
-		total = valor[produtoEscolhido] * qntdDigitada
+		carrinho[produtoEscolhido] = qntdDigitada
+
 		
+		para(inteiro i=0;i<qntdProdutos;i++){
+			se(carrinho[i] > 0){
+				total += carrinho[i] * valor[i]
+			}
+		}
 		escreva("║ Total: R$",total)
 		escreva("\n╚",divisoria,"\n")
 		
@@ -254,7 +262,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 2379; 
+ * @POSICAO-CURSOR = 5817; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
