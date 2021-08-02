@@ -144,15 +144,13 @@ programa
 			leia(opcaoPagamento)
 			se (opcaoPagamento =="1"){
 				pagamento = total - (total*0.1)
-				}
-			senao se (opcaoPagamento =="2"){
+			} senao se (opcaoPagamento =="2"){
 				pagamento = total + (total*0.1)
-				}
-			senao se (opcaoPagamento =="3"){
+			} senao se (opcaoPagamento =="3"){
 				pagamento = total + (total*0.15)
 				parcela = pagamento / 2 
 				escreva("parcela:", parcela)
-				}
+			}
 			
 			
 			//-----------------------------------------------------------------------------------------------
@@ -167,22 +165,26 @@ programa
 			escreva ("\nOpção de pagamento utilizada: ")
 			se (opcaoPagamento =="1"){
 				escreva ("A vista")
-				}
-			senao se (opcaoPagamento =="2"){
+			} senao se (opcaoPagamento =="2"){
 				escreva ("1x no cartão")
 				
-				}
-			senao se (opcaoPagamento =="3"){
+			} senao se (opcaoPagamento =="3"){
 				escreva ("2x no cartão\nValor da parcela: ",parcela)
-				}
+			}
 			escreva ("\n----------------------------------------")
 			escreva("\nDigite qualquer coisa para continuar")
 			leia(comprarSN)
 
-			//limpa carrinho
+			//zera variáveis de compra
 			para(inteiro i=0;i<qntdProdutos;i++){
 				carrinho[i] = 0
 			}
+			codFiscal = ""
+			total = 0.0
+			qntdTotal = 0
+			pagamento = 0.0
+			parcela = 0.0
+			
 			//checa o estoque total
 			checarEstoque = 0
 			para(inteiro i=0;i<qntdProdutos;i++){
@@ -207,9 +209,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 5282; 
+ * @POSICAO-CURSOR = 7252; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {estoque, 18, 10, 7}-{qntdTotal, 24, 10, 9}-{total, 25, 7, 5}-{carrinho, 26, 10, 8}-{checarEstoque, 29, 10, 13};
+ * @SIMBOLOS-INSPECIONADOS = {estoque, 18, 10, 7}-{codFiscal, 22, 9, 9}-{qntdTotal, 24, 10, 9}-{total, 25, 7, 5}-{carrinho, 26, 10, 8}-{checarEstoque, 29, 10, 13}-{pagamento, 31, 7, 9};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
