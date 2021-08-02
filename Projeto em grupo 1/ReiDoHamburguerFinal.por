@@ -57,22 +57,19 @@ programa
 		escreva(NOME,"\n",SLOGAN,"\n")
 		escreva("\nDeseja comprar? [S/N]: ")
 		leia(comprarSN)
+
+		//checa o estoque total
+		checarEstoque = 0
+		para(inteiro i=0;i<qntdProdutos;i++){
+			checarEstoque += estoque[i]
+		}
 		
-		enquanto(comprarSN == 'S' ou comprarSN == 's'){
+		enquanto(comprarSN == 'S' ou comprarSN == 's' e checarEstoque > 0){
 			limpa()
 			//-----------------------------------------------------------------------------------------------
 			//-------------------------------------  COMEÇAR CARRINHO ---------------------------------------
 			//-----------------------------------------------------------------------------------------------
-			//checa o estoque total
-			checarEstoque = 0
-			para(inteiro i=0;i<qntdProdutos;i++){
-				checarEstoque += estoque[i]
-			}
-
-			se(checarEstoque < 1){
-				escreva("\nSEM PRODUTOS NO ESTOQUE!\n")
-			}
-			enquanto(continuarCompra == 'S' ou continuarCompra == 's' e checarEstoque > 0){
+			faca{
 				//-----------------------------------------------------------------------------------------------
 				//------------------------------------  CÓDIGO PARA COMPRA --------------------------------------
 				//-----------------------------------------------------------------------------------------------
@@ -125,7 +122,7 @@ programa
 				escreva("\nContinuar comprando? [S/N]: ")
 				leia(continuarCompra)
 				limpa()
-			} 
+			} enquanto(continuarCompra == 'S' ou continuarCompra == 's')
 
 			//Calcula total com base no carrinho
 			para(inteiro i=0;i<qntdProdutos;i++){
@@ -181,14 +178,24 @@ programa
 			escreva ("\n----------------------------------------")
 			escreva("\nDigite qualquer coisa para continuar")
 			leia(comprarSN)
-			
+
+			//limpa carrinho
 			para(inteiro i=0;i<qntdProdutos;i++){
 				carrinho[i] = 0
 			}
+			//checa o estoque total
+			checarEstoque = 0
+			para(inteiro i=0;i<qntdProdutos;i++){
+				checarEstoque += estoque[i]
+			}
+			
 			limpa()
 			escreva(NOME,"\n",SLOGAN)
 			escreva("\nDeseja comprar? [S/N]: ")
 			leia(comprarSN)
+		}
+		se(checarEstoque < 1){
+			escreva("\nSEM PRODUTOS NO ESTOQUE!\n")
 		}
 		escreva("\nAté breve!!\n")
 		
@@ -200,9 +207,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 2719; 
+ * @POSICAO-CURSOR = 5282; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {estoque, 18, 10, 7}-{qntdTotal, 24, 10, 9}-{total, 25, 7, 5}-{carrinho, 26, 10, 8};
+ * @SIMBOLOS-INSPECIONADOS = {estoque, 18, 10, 7}-{qntdTotal, 24, 10, 9}-{total, 25, 7, 5}-{carrinho, 26, 10, 8}-{checarEstoque, 29, 10, 13};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
