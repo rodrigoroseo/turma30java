@@ -57,21 +57,21 @@ programa
 		escreva(NOME,"\n",SLOGAN,"\n")
 		escreva("\nDeseja comprar? [S/N]: ")
 		leia(comprarSN)
-
-		para(inteiro i=0;i<qntdProdutos;i++){
-			checarEstoque += estoque[i]
-		}
-
-		se(checarEstoque < 1){
-			escreva("\nSEM PRODUTOS NO ESTOQUE!\n")
-		}
 		
-		enquanto(comprarSN == 'S' ou comprarSN == 's' e checarEstoque > 0){
+		enquanto(comprarSN == 'S' ou comprarSN == 's'){
 			limpa()
 			//-----------------------------------------------------------------------------------------------
 			//-------------------------------------  COMEÇAR CARRINHO ---------------------------------------
 			//-----------------------------------------------------------------------------------------------
-			faca{
+			//checa o estoque total
+			para(inteiro i=0;i<qntdProdutos;i++){
+				checarEstoque += estoque[i]
+			}
+
+			se(checarEstoque < 1){
+				escreva("\nSEM PRODUTOS NO ESTOQUE!\n")
+			}
+			enquanto(continuarCompra == 'S' ou continuarCompra == 's' e checarEstoque > 0){
 				//-----------------------------------------------------------------------------------------------
 				//------------------------------------  CÓDIGO PARA COMPRA --------------------------------------
 				//-----------------------------------------------------------------------------------------------
@@ -124,7 +124,7 @@ programa
 				escreva("\nContinuar comprando? [S/N]: ")
 				leia(continuarCompra)
 				limpa()
-			} enquanto(continuarCompra == 'S' ou continuarCompra == 's')
+			} 
 
 			//Calcula total com base no carrinho
 			para(inteiro i=0;i<qntdProdutos;i++){
@@ -199,7 +199,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 4396; 
+ * @POSICAO-CURSOR = 2698; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = {estoque, 18, 10, 7}-{qntdTotal, 24, 10, 9}-{total, 25, 7, 5}-{carrinho, 26, 10, 8};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
