@@ -64,6 +64,7 @@ programa
 			//-------------------------------------  COMEÇAR CARRINHO ---------------------------------------
 			//-----------------------------------------------------------------------------------------------
 			//checa o estoque total
+			checarEstoque = 0
 			para(inteiro i=0;i<qntdProdutos;i++){
 				checarEstoque += estoque[i]
 			}
@@ -199,7 +200,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 2698; 
+ * @POSICAO-CURSOR = 2719; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = {estoque, 18, 10, 7}-{qntdTotal, 24, 10, 9}-{total, 25, 7, 5}-{carrinho, 26, 10, 8};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
