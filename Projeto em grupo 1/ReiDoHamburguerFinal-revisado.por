@@ -19,7 +19,6 @@ programa
 		//------------ variáveis da compra
 		inteiro produtoEscolhido = 0
 		cadeia codigoDigitado = ""
-		cadeia codFiscal = ""
 		inteiro qntdDigitada = 0
 		inteiro qntdTotal = 0
 		real total = 0.0
@@ -119,7 +118,6 @@ programa
 					estoque[produtoEscolhido] = estoque[produtoEscolhido] - qntdDigitada
 					carrinho[produtoEscolhido] += qntdDigitada
 					qntdTotal += qntdDigitada
-					codFiscal = codFiscal + codigoDigitado + " | "
 				}
 				
 				escreva("\nContinuar comprando? [S/N]: ")
@@ -138,6 +136,14 @@ programa
 			//-------------------------------  ESCOLHER FORMA DE PAGAMENTO ----------------------------------
 			//-----------------------------------------------------------------------------------------------
 			escreva("\n", NOME, "\n")
+			escreva("\nCOD \t PRODUTO \t\t VALOR \t QUANTIDADE \n-----------------------------------------------------\n")
+			para(inteiro i=0;i<qntdProdutos;i++){
+				se (carrinho[i] !=0){
+					escreva(codigo[i],"\t| ",PRODUTO[i],"\t\t| ",valor[i],"\t| ",carrinho[i],"\n")
+					}
+				
+				}
+			escreva("-----------------------------------------------------\n")
 			escreva("Total: R$",total)
 			escreva("\n", "Imposto: R$", mat.arredondar(total*0.09, 2))
 			escreva("\nOpção 1: A vista, 10% de desconto")
@@ -161,8 +167,15 @@ programa
 			//-----------------------------------------------------------------------------------------------
 			escreva ("----------NOTA FISCAL-----------------\n")
 			escreva(NOME)
-			escreva ("\nCódigo dos produtos comprados: ")
-			escreva (codFiscal)
+			escreva("\n\nCOD \t PRODUTO \t\t VALOR \t QUANTIDADE \n-----------------------------------------------------\n")
+			para(inteiro i=0;i<qntdProdutos;i++){
+				se (carrinho[i] !=0){
+					escreva(codigo[i],"\t| ",PRODUTO[i],"\t\t| ",valor[i],"\t| ",carrinho[i],"\n")
+					}
+				
+				}
+			escreva("-----------------------------------------------------\n")
+
 			escreva ("\nQuantidade: ", qntdTotal)
 			escreva ("\nValor final: R$", pagamento)
 			escreva ("\nOpção de pagamento utilizada: ")
@@ -182,7 +195,6 @@ programa
 			para(inteiro i=0;i<qntdProdutos;i++){
 				carrinho[i] = 0
 			}
-			codFiscal = ""
 			total = 0.0
 			qntdTotal = 0
 			pagamento = 0.0
@@ -212,9 +224,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 4958; 
+ * @POSICAO-CURSOR = 7750; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {estoque, 18, 10, 7}-{codFiscal, 22, 9, 9}-{qntdTotal, 24, 10, 9}-{total, 25, 7, 5}-{carrinho, 26, 10, 8}-{checarEstoque, 29, 10, 13}-{pagamento, 31, 7, 9};
+ * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
