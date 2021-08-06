@@ -27,7 +27,7 @@ public class ReiDoHamburguer {
 		char comprarSN = 'S';
 		char continuarCompra = 'S';
 		int checarEstoque = 0;
-		String opcaoPagamento = "";
+		char opcaoPagamento = ' ';
 		double pagamento = 0.0;
 		double parcela = 0.0;
 		int checarCodigo = 0;
@@ -57,7 +57,7 @@ public class ReiDoHamburguer {
 		System.out.print("\nDeseja comprar? [S/N]: ");
 		comprarSN = leia.next().toUpperCase().charAt(0);
 
-		//checa o estoque total
+		//CHECA O ESTOQUE TOTAL
 		checarEstoque = 0;
 		for(int i=0;i<qntdProdutos;i++){
 			checarEstoque += estoque[i];
@@ -75,16 +75,16 @@ public class ReiDoHamburguer {
 					//-----------------------------------------------------------------------------------------------
 					//--------------------------------------- MENU DE OPÇÕES ----------------------------------------
 					//-----------------------------------------------------------------------------------------------
-					System.out.print("COD \t PRODUTO \t\t VALOR \t ESTOQUE \n------------------------------------------------\n");
+					System.out.print("\nCOD \t| PRODUTO \t\t| VALOR\t| ESTOQUE \n-------------------------------------------------\n");
 					for(int i=0;i<qntdProdutos;i++){
-						System.out.printf("%s \t| %s \t\t| %.2f \t| %d\n", codigo[i],PRODUTO[i],valor[i],estoque[i]);
+						System.out.printf("%s \t| %s \t\t| %.2f\t| %d\n", codigo[i],PRODUTO[i],valor[i],estoque[i]);
 					}
 					
 					System.out.print("\nCarrinho");
 					System.out.print("\nCódigo do lanche: ");
 					codigoDigitado = leia.next();
 					for(produtoEscolhido=0;produtoEscolhido<qntdProdutos;produtoEscolhido++){
-						//Procura o lanche do código digitado e mostra na tela se achar, se não achar, avisa, e pede para digitar outro
+						//PESQUISA E CHECA SE O LANCHE DIGITADO EXISTE
 						if(codigoDigitado.equals(codigo[produtoEscolhido])){
 							checarCodigo = 1;
 							System.out.printf("%s | %s | %.2f | %d\n", codigo[produtoEscolhido],PRODUTO[produtoEscolhido],valor[produtoEscolhido],estoque[produtoEscolhido]);
@@ -101,18 +101,36 @@ public class ReiDoHamburguer {
 				//-----------------------------------------------------------------------------------------------
 				System.out.print("Quantidade: ");
 				qntdDigitada = leia.nextInt();
-			
+				// SE O CLIENTE PEDIR UMA QUANTIDADE MAIOR DO QUE A QUE TEM NO ESTOQUE, AVISE
+				if(qntdDigitada <= 0){
+					System.out.print("ATENÇÃO! Quantidade Inválida.\nDigite uma quantidade maior que 0\n");
+				} else if (estoque[produtoEscolhido] - qntdDigitada  < 0) {
+					System.out.print("\nATENÇÃO! Quantidade Inválida.\nFavor escolher um produto que tenha no estoque, e uma quantidade disponível dele.\n");
+				} else {
+					estoque[produtoEscolhido] = estoque[produtoEscolhido] - qntdDigitada;
+					carrinho[produtoEscolhido] += qntdDigitada;
+					qntdTotal += qntdDigitada;
+				}
+
+				System.out.println("\nContinuar comprando? [S/N]: ");
+				continuarCompra = leia.next().toUpperCase().charAt(0);
 			} while(continuarCompra == 'S'); //FIM COMPRA ---------------------------------------------------
 			
+			//CALCULA O TOTAL COM BASE NO CARRINHO
+			for (int i = 0; i < qntdProdutos; i++) {
+				if (carrinho[i] > 0) {
+					total += carrinho[i] * valor[i];
+				}
+			}
 			//-----------------------------------------------------------------------------------------------
 			//-------------------------------  ESCOLHER FORMA DE PAGAMENTO ----------------------------------
 			//-----------------------------------------------------------------------------------------------
 			System.out.print ("\n"+ NOME +"\n");
-			System.out.print ("\nCOD \t PRODUTO \t\t VALOR \t QUANTIDADE \n-----------------------------------------------------\n");
+			System.out.print("\nCOD \t| PRODUTO \t\t| VALOR\t| QUANTIDADE \n----------------------------------------------------\n");
 			
 			for (int i=0; i<qntdProdutos; i++) {
 				if (carrinho[i] !=0){
-					System.out.print (codigo[i]+"\t| "+PRODUTO[i]+"\t\t| "+valor[i]+"\t| "+carrinho[i]+"\n");
+					System.out.printf("%s \t| %s \t\t| %.2f\t| %d\n", codigo[i],PRODUTO[i],valor[i],carrinho[i]);
 				} 
 			}
 			
@@ -123,15 +141,20 @@ public class ReiDoHamburguer {
 			System.out.print ("\nOpção 2: 1x no cartão, 10% de acrescimo");
 			System.out.print ("\nOpção 3: 2x no cartão, 15% de acrescimo");
 			System.out.print ("\nSelecione a opção de pagamento: ");
-			opcaoPagamento = leia.next();
+			do {
+				opcaoPagamento = leia.next().charAt(0);
+				if(opcaoPagamento != '1' & opcaoPagamento != '2' & opcaoPagamento != '3') {
+					System.out.printf ("\nDIGITE UMA OPÇÃO VÁLIDA!: ");
+				}
+			} while(opcaoPagamento != '1' & opcaoPagamento != '2' & opcaoPagamento != '3');
 			
-			if (opcaoPagamento =="1") {
+			if (opcaoPagamento == '1') {
 				pagamento = total - (total*0.1);
 			} 
-			else if (opcaoPagamento =="2"){
+			else if (opcaoPagamento == '2'){
 				pagamento = total + (total*0.1);
 			} 
-			else if (opcaoPagamento =="3") {
+			else if (opcaoPagamento == '3') {
 				pagamento = total + (total*0.15);
 				parcela = pagamento / 2; 
 				System.out.print ("parcela:"+ parcela);
@@ -142,11 +165,11 @@ public class ReiDoHamburguer {
 			//-----------------------------------------------------------------------------------------------
 			System.out.print ("----------NOTA FISCAL-----------------\n");
             System.out.print (NOME);
-            System.out.print ("\n\nCOD \t PRODUTO \t\t VALOR \t QUANTIDADE \n-----------------------------------------------------\n");
+            System.out.print("\nCOD \t| PRODUTO \t\t| VALOR\t| QUANTIDADE \n----------------------------------------------------\n");
             
             for (int i=0; i<qntdProdutos; i++) {
                 if (carrinho[i] !=0){
-                    System.out.print (codigo[i]+"\t| "+PRODUTO[i]+"\t\t| "+valor[i]+"\t| "+carrinho[i]+"\n");
+                	System.out.printf("%s \t| %s \t\t| %.2f\t| %d\n", codigo[i],PRODUTO[i],valor[i],carrinho[i]);
                 }
                 
             }
@@ -157,22 +180,22 @@ public class ReiDoHamburguer {
             System.out.print ("\nValor final: R$"+ pagamento);
             System.out.print ("\nOpção de pagamento utilizada: ");
             
-            if (opcaoPagamento == "1") {
+            if (opcaoPagamento == '1') {
                 System.out.print ("A vista");
             } 
-            else if (opcaoPagamento == "2") {
+            else if (opcaoPagamento == '2') {
                 System.out.print ("1x no cartão");
             }
-            else if (opcaoPagamento == "3"){
+            else if (opcaoPagamento == '3'){
                 System.out.print ("2x no cartão\nValor da parcela: "+parcela);
             }
             
             System.out.print ("\n----------------------------------------");
-            System.out.print ("\nDigite qualquer coisa para continuar");
+            System.out.print ("\nDigite qualquer coisa para continuar... ");
             comprarSN = leia.next().charAt(0);
 			
 			//ZERAR COISAS ----------------------------------------------------------------------------------
-			//zera variáveis de compra
+			//ZERA VARIÁVEIS DE COMPRA
 			for(int i=0;i<qntdProdutos;i++){
 				carrinho[i] = 0;
 			}
@@ -181,7 +204,7 @@ public class ReiDoHamburguer {
 			pagamento = 0.0;
 			parcela = 0.0;
 			
-			//checa o estoque total
+			//ZERA E CHECA O TOTAL
 			checarEstoque = 0;
 			for(int i=0;i<qntdProdutos;i++){
 				checarEstoque += estoque[i];
