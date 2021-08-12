@@ -29,7 +29,8 @@ public class CadLoja {
 		int produtoEscolhido = 0;
 		int qntdDigitada = 0;
 		char opcaoPagamento = ' ';
-		
+		int numeroPedido = 0;
+		String nomeCliente = "";
 		
 		//-----------------------------------------------------------------------------------------------
 		//--------------------------------- INSTANCIAMENTO DE LISTAS ------------------------------------
@@ -54,7 +55,9 @@ public class CadLoja {
 		//-----------------------------------------------------------------------------------------------
 		//--------------------------------------  COMEÇAR COMPRA ----------------------------------------
 		//-----------------------------------------------------------------------------------------------
-		System.out.print("╔═══════════════════╗\n║ "+NOME.toUpperCase()+" ║ "+SLOGAN.toUpperCase()+"\n╚═══════════════════╝ ════════════════════════════════════════════\n");
+		System.out.print("╔═══════════════════╗\n");
+		System.out.print("║ "+NOME.toUpperCase()+" ║ "+SLOGAN.toUpperCase()+"\n");
+		System.out.print("╚═══════════════════╝ ════════════════════════════════════════════\n");
 		System.out.print("\n Deseja comprar [S/N]: ");
 		comprarSN = leia.next().toUpperCase().charAt(0);
 		
@@ -70,6 +73,7 @@ public class CadLoja {
 			pagamento = 0.0;
 			parcela = 0.0;
 			continuarCompra = 'S';
+			nomeCliente = "";
 			
 			//CHECA O ESTOQUE TOTAL
 			checarEstoque = 0;
@@ -85,39 +89,48 @@ public class CadLoja {
 				//-----------------------------------------------------------------------------------------------
 				//------------------------------------  CÓDIGO PARA COMPRA --------------------------------------
 				//-----------------------------------------------------------------------------------------------
+				
+				//-----------------------------------------------------------------------------------------------
+				//--------------------------------------- MENU DE OPÇÕES ----------------------------------------
+				//-----------------------------------------------------------------------------------------------
+				
+				//CABEÇALHO MENU
+				System.out.print("\n╔════════════════════════════════════════════════╗");
+				System.out.print("\n║                    CARDÁPIO                    ║");
+				System.out.print("\n╚════════════════════════════════════════════════╝");
+				System.out.print("\n ───────┬───────┬─────────┬──────────────────────");
+				System.out.print("\n  COD\t│ VALOR\t│ ESTOQUE │ PRODUTO\n");
+				
+				//ITENS MENU
+				for (Produto lanche : produtos) {
+					System.out.print(" ───────┼───────┼─────────┼──────────────────────\n  ");
+					System.out.printf("%s\t│ %.2f\t│  %d\t  │  %s\n",lanche.getCodigo(),lanche.getValor(),lanche.getEstoque(),lanche.getNome());
+				}
+				
+				//IMPRIME O CARRINHO
+				System.out.print("\n╔════════════════════════════════════════════════╗");
+				System.out.print("\n║                    CARRINHO                    ║");
+				System.out.print("\n╚════════════════════════════════════════════════╝");
+				//SE TIVER ALGO NO CARRINHO: CABEÇALHO CARRINHO
+				if(carrinho.size() > 0){
+					System.out.print("\n  QNTD\t│ NOME\n");
+				}
+				//SE TIVER ALGO NO CARRINHO: ITENS CARRINHO
+				for(Carrinho item : carrinho) {
+					System.out.print(" ───────┼────────────────────────────────────────\n  ");
+					System.out.print(item.getQuantidade()+"\t│ "+item.getNomeProduto()+"\n");
+				}
 				do {
-					//-----------------------------------------------------------------------------------------------
-					//--------------------------------------- MENU DE OPÇÕES ----------------------------------------
-					//-----------------------------------------------------------------------------------------------
-					
-					//CABEÇALHO MENU
-					System.out.printf("\n ───────┬───────┬─────────┬──────────────────────");
-					System.out.print("\n  COD\t│ VALOR\t│ ESTOQUE │ PRODUTO\n");
-					
-					//ITENS MENU
-					for (Produto lanche : produtos) {
-						System.out.print(" ───────┼───────┼─────────┼──────────────────────\n  ");
-						System.out.print(lanche.getCodigo()+"\t│ "+lanche.getValor()+"\t│ "+lanche.getEstoque()+"\t  │ "+lanche.getNome()+"\n");
-					}
-					
-					//IMPRIME O CARRINHO
-					System.out.print("\n╔════════════════════════════════════════════════╗");
-					System.out.print("\n║                    Carrinho                    ║");
-					System.out.print("\n╚════════════════════════════════════════════════╝");
-					//SE TIVER ALGO NO CARRINHO: CABEÇALHO CARRINHO
-					if(carrinho.size() > 0){
-						System.out.print("\n  QNTD\t│ NOME\n");
-					}
-					//SE TIVER ALGO NO CARRINHO: ITENS CARRINHO
-					for(Carrinho item : carrinho) {
-						System.out.print(" ───────┼────────────────────────────────────────\n  ");
-						System.out.print(item.getQuantidade()+"\t│ "+item.getNomeProduto()+"\n");
-					}
 					
 					//LÊ CÓDIGO
-					System.out.print("\n╔═════════════════════════");
+					System.out.print("\n╔════════════════════════");
 					System.out.print("\n║ Código do produto: ");
 					codigoDigitado = leia.next().toUpperCase();
+					
+					//CONSERTA ERRO DE DIGITAÇÃO DO CÓDIGO (SEM G6-)
+					if(codigoDigitado.length() <= 2) {
+						codigoDigitado = "G6-"+codigoDigitado;
+					}
 					
 					//CHECA SE CÓDIGO EXISTE
 					for(Produto item : produtos) {
@@ -131,32 +144,46 @@ public class CadLoja {
 					}
 					
 					if(checarCodigo == true) {
-						System.out.print("\nEste lanche não existe! Digite um código válido.\nEnter para continuar...");
+						System.out.print("\n╔═══ ALERTA ═══════════════════════════════════════╗");
+						System.out.print("\n║ Este lanche não existe! Digite um código válido. ║\n║ » Pressione enter para continuar...              ║");
+						System.out.print("\n╚══════════════════════════════════════════════════╝");
 						System.in.read();
+					} else if(produtos.get(produtoEscolhido).getEstoque() <= 0) {
+						System.out.print("\n╔═══ ALERTA ═════════════════╗");
+						System.out.print("\n║ Este lanche já se esgotou! ║\n║ » Enter para continuar...  ║");
+						System.out.print("\n╚════════════════════════════╝");
+						System.in.read();
+						checarCodigo = true;
 					}
 					
 				} while(checarCodigo); //FIM MENU ----------------------------------------------------------
 				//-----------------------------------------------------------------------------------------------
 				//---------------------------------  TIRAR COMPRAS DO ESTOQUE -----------------------------------
 				//-----------------------------------------------------------------------------------------------
+				System.out.print("╠───────┬─────────┬──────────────────────");
+				System.out.print("\n║ VALOR\t│ ESTOQUE │ PRODUTO\n");
+				System.out.print("╠───────┼─────────┼──────────────────────\n");
+				System.out.print("║ "+produtos.get(produtoEscolhido).getValor());
+				System.out.print("\t│ "+produtos.get(produtoEscolhido).getEstoque());
+				System.out.print("\t  │ "+produtos.get(produtoEscolhido).getNome()+"\n");
+				
 				do {
-					System.out.print("╠-------------------------\n");
+					System.out.print("╠----------------------------------------\n");
 					System.out.print("║ Quantidade: ");
 					qntdDigitada = leia.nextInt();
 					if(produtos.get(produtoEscolhido).retirarEstoque(qntdDigitada)) {
 						carrinho.add(new Carrinho(qntdDigitada,produtoEscolhido,produtos.get(produtoEscolhido).getNome()));
 						checarQntd = false;
-						System.out.println("Adicionado no carrinho! :D");
-						System.out.print("╚═════════════════════════");
+						System.out.print("╚════════════════════════════════════════");
 						qntdTotal += qntdDigitada;
 					} else {
-						System.out.println("Quantidade inválida! :(\n");
+						System.out.println("║ Quantidade inválida!");
 						checarQntd = true;
 					}
 				} while(checarQntd);
 				
 				
-				System.out.println("\nContinuar comprando [S/N]: ");
+				System.out.print("\n\n Continuar comprando [S/N]: ");
 				continuarCompra = leia.next().toUpperCase().charAt(0);
 				
 			} //FIM COMPRA ---------------------------------------------------
@@ -169,6 +196,10 @@ public class CadLoja {
 			//-----------------------------------------------------------------------------------------------
 			//-------------------------------  ESCOLHER FORMA DE PAGAMENTO ----------------------------------
 			//-----------------------------------------------------------------------------------------------
+			//IMPRIME O CARRINHO
+			System.out.print("\n╔════════════════════════════════════════════════╗");
+			System.out.print("\n║                    CARRINHO                    ║");
+			System.out.print("\n╚════════════════════════════════════════════════╝");
 			//CABEÇALHO CARRINHO
 			System.out.print("\n  QNTD\t│ NOME\n");
 			//ITENS CARRINHO
@@ -177,18 +208,25 @@ public class CadLoja {
 				System.out.print(item.getQuantidade()+"\t│ "+item.getNomeProduto()+"\n");
 			}
 			
-			System.out.print ("-----------------------------------------------------\n");
-			System.out.print ("Total: R$"+total);
-			System.out.print ("\n"+ "Imposto: R$"+ (Math.ceil (total * 0.09)));
-			System.out.print ("\nOpção 1: A vista, 10% de desconto");
-			System.out.print ("\nOpção 2: 1x no cartão, 10% de acrescimo");
-			System.out.print ("\nOpção 3: 2x no cartão, 15% de acrescimo");
-			System.out.print ("\nSelecione a opção de pagamento: ");
+			System.out.printf("\n╔═════════════════════╗");
+			System.out.printf("\n║ OPÇÕES DE PAGAMENTO ║");
+			System.out.printf("\n╚═════════════════════╝");
+			System.out.printf("\n ────────┬───────────────────────────────────────");
+			System.out.printf("\n TOTAL   │ R$%.2f",total);
+			System.out.printf("\n IMPOSTO │ R$%.2f",(Math.ceil (total * 0.09)));
+			System.out.printf("\n ────────┴─────────────────┬─────────────────────");
+			System.out.printf("\n » Opção [1]: A vista      │ 10%% de desconto");
+			System.out.printf("\n » Opção [2]: 1× no cartão │ 10%% de acrescimo");
+			System.out.printf("\n » Opção [3]: 2× no cartão │ 15%% de acrescimo\n");
 			
 			do {
+				System.out.print("\n Opção [1/2/3]: ");
 				opcaoPagamento = leia.next().charAt(0);
 				if(opcaoPagamento != '1' & opcaoPagamento != '2' & opcaoPagamento != '3') {
-					System.out.printf ("\nDIGITE UMA OPÇÃO VÁLIDA!: ");
+					System.out.print("\n╔═══ ALERTA ═══════════════════════╗");
+					System.out.print("\n║ Digite uma opção válida! [1/2/3] ║\n║ » Enter para continuar...        ║");
+					System.out.print("\n╚══════════════════════════════════╝");
+					System.in.read();
 				}
 			} while(opcaoPagamento != '1' & opcaoPagamento != '2' & opcaoPagamento != '3');
 			
@@ -207,37 +245,65 @@ public class CadLoja {
 			//------------------------------------  EMITIR NOTA FISCAL --------------------------------------
 			//-----------------------------------------------------------------------------------------------
 			
-			System.out.print ("---------- NOTA FISCAL -----------------\n");
-			System.out.print("╔═══════════════════╗\n║ "+NOME.toUpperCase()+" ║ \n╚═══════════════════╝\n");
+			System.out.print("\n Seu nome: ");
+			nomeCliente = leia.next();
+			
+			System.out.print("\n------------------------------------------------------");
+			System.out.print("\n                 "+NOME.toUpperCase()+"®");
+			System.out.print("\n         Rua FullStack nº30 Bairo Generation");
+			System.out.print("\n------------------------------------------------------");
+			System.out.print("\n          CPF do consumidor: XXX.XXX.XXX-XX");
+			System.out.print("\n------------------------------------------------------");
 			//CABEÇALHO CARRINHO
-			System.out.print("\n  QNTD\t│ NOME\n");
+			System.out.print("\n  COD\t VALOR\t QNTD\t TOTAL\t PRODUTO\n");
 			//ITENS CARRINHO
 			for(Carrinho item : carrinho) {
-				System.out.print(" ───────┼────────────────────────────────────────\n  ");
-				System.out.print(item.getQuantidade()+"\t│ "+item.getNomeProduto()+"\n");
+				System.out.print("  "+produtos.get(item.getIdProduto()).getCodigo()+"\t ");
+				System.out.print(produtos.get(item.getIdProduto()).getValor()+"\t ");
+				System.out.print(item.getQuantidade()+"\t ");
+				System.out.print( ( item.getQuantidade()*produtos.get(item.getIdProduto()).getValor() ) + "\t ");
+				System.out.print(produtos.get(item.getIdProduto()).getNome()+"\n");
 			}
 			
-			 System.out.print("-----------------------------------------------------\n");
+			 System.out.print("------------------------------------------------------\n");
 
-	         System.out.print ("\nQuantidade: "+ qntdTotal);
-	         System.out.print ("\nValor final: R$"+ pagamento);
-	         System.out.print ("\nOpção de pagamento utilizada: ");
-	            
+	         System.out.print("\nQNTD TOTAL DE ITENS\t\t\t    "+ qntdTotal);
+	         System.out.printf("\nVALOR TOTAL\t\t\t\t    R$ %.2f", total);
+	         System.out.printf("\nVALOR A PAGAR\t\t\t\t    R$ %.2f", pagamento);
+	         
 	         if (opcaoPagamento == '1') {
-	        	 System.out.print ("A vista");
+	        	 System.out.printf("\nDESCONTO\t\t\t\t    %.2f",(total*0.1));
 	         } 
 	         else if (opcaoPagamento == '2') {
-	        	 System.out.print ("1x no cartão");
+	        	 System.out.printf("\nACRESCIMO\t\t\t\t    %.2f",(total*0.1));
 	         }
 	         else if (opcaoPagamento == '3'){
-	        	 System.out.print ("2x no cartão\nValor da parcela: "+parcela);
+	        	 System.out.printf("\nACRESCIMO\t\t\t\t    %.2f",(total*0.15));
 	         }
 	         
-	         System.out.print ("\n----------------------------------------");
-	         System.out.print ("\nEnter para continuar...");
+	         System.out.print("\nFORMA DE PAGAMENTO\t\t\t    ");
+	            
+	         if (opcaoPagamento == '1') {
+	        	 System.out.print("A VISTA");
+	         } 
+	         else if (opcaoPagamento == '2') {
+	        	 System.out.print("1× CARTAO");
+	         }
+	         else if (opcaoPagamento == '3'){
+	        	 System.out.printf("2× CARTAO\nVALOR DA PARCELA\t\t\t    %.2f",parcela);
+	         }
+	         
+	         numeroPedido++;
+	         System.out.print("\n\nNUMERO DO PEDIDO: "+numeroPedido+" CLIENTE: "+nomeCliente.toUpperCase());
+	         
+	         System.out.print("\n------------------------------------------------------\n");
+	         System.out.print("\n » Enter para continuar...");
 	         System.in.read();
 			
-			System.out.print("\n Deseja comprar? [S/N]: ");
+	         System.out.print("\n╔═══════════════════╗\n");
+	         System.out.print("║ "+NOME.toUpperCase()+" ║ "+SLOGAN.toUpperCase()+"\n");
+	         System.out.print("╚═══════════════════╝ ════════════════════════════════════════════\n");
+	         System.out.print("\n Deseja comprar? [S/N]: ");
 			comprarSN = leia.next().toUpperCase().charAt(0);
 		} //FIM CARRINHO --------------------------------------------------------------------------------
 		
@@ -245,13 +311,6 @@ public class CadLoja {
 		
 		leia.close();
 		//FIM DO PROGRAMA
-		
-		/*
-		String auxCodigo = "G6-6";
-		int x;
-		x = produtos.indexOf(auxCodigo);
-		System.out.print("\n\n"+x);
-		*/
 	}
 
 }
