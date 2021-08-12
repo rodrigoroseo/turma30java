@@ -4,20 +4,20 @@ public class Produto {
 	//ATRIBUTOS ------------------------------------------------------------
 	private String codigo;
 	private String nome;
-	private double preco;
+	private double valor;
 	private int estoque;
 	
 	//CONSTRUTOR -----------------------------------------------------------
-	public Produto(String codigo, String nome, double preco, int estoque) {
+	public Produto(String codigo, String nome, double valor, int estoque) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
-		this.preco = preco;
+		this.valor = valor;
 		this.estoque = estoque;
 	}
 
 	//METODOS --------------------------------------------------------------
-	public boolean comprar(String codigo, int quantidade) {
+	public boolean retirarEstoque(int quantidade) {
 		if(quantidade <= 0) {
 			return false;
 		} else if(quantidade > this.estoque) {
@@ -44,11 +44,11 @@ public class Produto {
 		this.nome = nome;
 	}
 	//PRECO
-	public double getPreco() {
-		return preco;
+	public double getValor() {
+		return valor;
 	}
-	public void setPreco(double preco) {
-		this.preco = preco;
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
 	//ESTOQUE
 	public int getEstoque() {

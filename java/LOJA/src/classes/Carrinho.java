@@ -1,13 +1,17 @@
 package classes;
 
-public class Carrinho extends Produto {
+public class Carrinho {
 	//ATRIBUTOS ------------------------------------------------------------
 	private int quantidade;
+	private int idProduto;
+	private String nomeProduto;
 
 	//CONSTRUTOR -----------------------------------------------------------
-	public Carrinho(String codigo, String nome, double preco, int estoque, int quantidade) {
-		super(codigo, nome, preco, estoque);
+	public Carrinho(int quantidade, int idProduto, String nomeProduto) {
+		super();
 		this.quantidade = quantidade;
+		this.idProduto = idProduto;
+		this.nomeProduto = nomeProduto;
 	}
 	
 	//METODOS --------------------------------------------------------------
@@ -19,6 +23,20 @@ public class Carrinho extends Produto {
 	}
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
+	}
+	//ID PRODUTO
+	public int getIdProduto() {
+		return idProduto;
+	}
+	public void setIdProduto(int idProduto) {
+		this.idProduto = idProduto;
+	}
+	//NOME PRODUTO
+	public String getNomeProduto() {
+		return nomeProduto;
+	}
+	public void setNomeProduto(String nomeProduto) {
+		this.nomeProduto = nomeProduto;
 	}
 	
 }

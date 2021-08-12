@@ -13,7 +13,7 @@ public class Terceiro extends Funcionario {
 	//METODO
 	@Override
 	public double calcularSalario() {
-		return super.calcularSalario()+this.adicional;
+		return this.horasTrabalhadas * this.valorPorHora + this.adicional;
 	}
 
 	//Getters and Setters
