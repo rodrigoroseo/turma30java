@@ -117,7 +117,7 @@ public class CadLoja {
 					//LÊ CÓDIGO
 					System.out.print("\n╔═════════════════════════");
 					System.out.print("\n║ Código do produto: ");
-					codigoDigitado = leia.next();
+					codigoDigitado = leia.next().toUpperCase();
 					
 					//CHECA SE CÓDIGO EXISTE
 					for(Produto item : produtos) {
