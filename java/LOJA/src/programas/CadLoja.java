@@ -269,7 +269,6 @@ public class CadLoja {
 
 	         System.out.print("\nQNTD TOTAL DE ITENS\t\t\t    "+ qntdTotal);
 	         System.out.printf("\nVALOR TOTAL\t\t\t\t    R$ %.2f", total);
-	         System.out.printf("\nVALOR A PAGAR\t\t\t\t    R$ %.2f", pagamento);
 	         
 	         if (opcaoPagamento == '1') {
 	        	 System.out.printf("\nDESCONTO\t\t\t\t    %.2f",(total*0.1));
@@ -281,6 +280,7 @@ public class CadLoja {
 	        	 System.out.printf("\nACRESCIMO\t\t\t\t    %.2f",(total*0.15));
 	         }
 	         
+	         System.out.printf("\nVALOR A PAGAR\t\t\t\t    R$ %.2f", pagamento);
 	         System.out.print("\nFORMA DE PAGAMENTO\t\t\t    ");
 	            
 	         if (opcaoPagamento == '1') {
