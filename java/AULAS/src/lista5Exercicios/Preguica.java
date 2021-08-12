@@ -3,8 +3,8 @@ package lista5Exercicios;
 public class Preguica extends Animal implements Som {
 	
 	//CONSTRUTOR
-	public Preguica(String nome, int idade) {
-		super(nome, idade);
+	public Preguica(String nome, int anoNascimento) {
+		super(nome, anoNascimento);
 	}
 	
 	//METODOS
@@ -15,7 +15,7 @@ public class Preguica extends Animal implements Som {
 
 	@Override
 	public String emitirSom() {
-		return "Aahn! Aaaahhn!";
+		return "*Aahn! Aaaahhn!*";
 	}
 
 }

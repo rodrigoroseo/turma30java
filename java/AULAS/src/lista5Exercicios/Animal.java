@@ -3,17 +3,20 @@ package lista5Exercicios;
 public abstract class Animal {
 	//ATRIBUTOS
 	private String nome;
-	private int idade;
+	private int anoNascimento;
 	
 	//CONSTRUTOR
-	public Animal(String nome, int idade) {
+	public Animal(String nome, int anoNascimento) {
 		super();
 		this.nome = nome;
-		this.idade = idade;
+		this.anoNascimento = anoNascimento;
 	}
 	
 	//METODOS
 	abstract String movimento();
+	public int calcularIdade(int ano) {
+		return ano - this.anoNascimento;
+	}
 
 	//Getters and Setters
 	//NOME
@@ -24,11 +27,11 @@ public abstract class Animal {
 		this.nome = nome;
 	}
 	//IDADE
-	public int getIdade() {
-		return idade;
+	public int getAnoNascimento() {
+		return anoNascimento;
 	}
-	public void setIdade(int idade) {
-		this.idade = idade;
+	public void setAnoNascimento(int anoNascimento) {
+		this.anoNascimento = anoNascimento;
 	}
 	
 }
