@@ -103,8 +103,10 @@ public class CadLoja {
 				
 				//ITENS MENU
 				for (Produto lanche : produtos) {
-					System.out.print(" ───────┼───────┼─────────┼──────────────────────\n  ");
-					System.out.printf("%s\t│ %.2f\t│  %d\t  │  %s\n",lanche.getCodigo(),lanche.getValor(),lanche.getEstoque(),lanche.getNome());
+					if(lanche.getEstoque() != 0) {
+						System.out.print(" ───────┼───────┼─────────┼──────────────────────\n  ");
+						System.out.printf("%s\t│ %.2f\t│  %d\t  │  %s\n",lanche.getCodigo(),lanche.getValor(),lanche.getEstoque(),lanche.getNome());
+					}
 				}
 				
 				//IMPRIME O CARRINHO
@@ -123,7 +125,7 @@ public class CadLoja {
 				do {
 					
 					//LÊ CÓDIGO
-					System.out.print("\n╔════════════════════════");
+					System.out.print("\n╔═════════════════════════");
 					System.out.print("\n║ Código do produto: ");
 					codigoDigitado = leia.next().toUpperCase();
 					
@@ -307,7 +309,10 @@ public class CadLoja {
 			comprarSN = leia.next().toUpperCase().charAt(0);
 		} //FIM CARRINHO --------------------------------------------------------------------------------
 		
-		System.out.print("\n Até breve!!\n");
+		System.out.print("\n                  ╔════════════╗");
+		System.out.print("\n                  ║ ATÉ BREVE! ║");
+		System.out.print("\n                  ╚════════════╝");
+		System.out.print("\n               Sistema encerrado...");
 		
 		leia.close();
 		//FIM DO PROGRAMA
