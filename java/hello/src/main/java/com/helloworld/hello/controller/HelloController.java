@@ -12,6 +12,6 @@ public class HelloController {
 	}
 	@GetMapping("/bye")
 	public String sayBye() {
-		return "<h3>Objetivos de aprendizagem:</h3><ul><li>Aprender Spring</li><li>Treinar minha gestão de tempo</li></ul>";
+		return "<h3>Objetivos de aprendizagem:</h3><ul> <li>Aprender Spring</li> <li>Treinar minha gestão de tempo</li> </ul>";
 	}
 }
