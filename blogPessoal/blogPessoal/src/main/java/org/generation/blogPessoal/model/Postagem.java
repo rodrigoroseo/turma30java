@@ -18,7 +18,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "postagem")
 public class Postagem {
-	//ATRIBUTOS
+	//ATRIBUTOS ------------------------------------------------------------
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -38,7 +39,8 @@ public class Postagem {
 	@JsonIgnoreProperties("postagem")
 	private Tema tema;
 	
-	//Getters and Setters
+	//GETTERS E SETTERS ----------------------------------------------------
+	
 	//ID
 	public long getId() {
 		return id;
@@ -46,6 +48,7 @@ public class Postagem {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
 	//TITULO
 	public String getTitulo() {
 		return titulo;
@@ -53,6 +56,7 @@ public class Postagem {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+	
 	//TEXTO
 	public String getTexto() {
 		return texto;
@@ -60,6 +64,7 @@ public class Postagem {
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
+	
 	//DATE
 	public Date getData() {
 		return data;
@@ -67,6 +72,7 @@ public class Postagem {
 	public void setData(Date data) {
 		this.data = data;
 	}
+	
 	//TEMA
 	public Tema getTema() {
 		return tema;
