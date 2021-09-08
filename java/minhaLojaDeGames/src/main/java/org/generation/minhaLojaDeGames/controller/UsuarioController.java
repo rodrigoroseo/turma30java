@@ -1,10 +1,10 @@
-package org.generation.blogPessoal.controller;
+package org.generation.minhaLojaDeGames.controller;
 
 import java.util.Optional;
 
-import org.generation.blogPessoal.model.UserLogin;
-import org.generation.blogPessoal.model.Usuario;
-import org.generation.blogPessoal.service.UsuarioService;
+import org.generation.minhaLojaDeGames.model.UserLogin;
+import org.generation.minhaLojaDeGames.model.Usuario;
+import org.generation.minhaLojaDeGames.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
