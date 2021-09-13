@@ -28,6 +28,11 @@ public class UsuarioService {
 		return repository.findAll();
 	}
 	
+	//GET BY ID
+	public Optional<Usuario> getById(long id) {
+		return repository.findById(id);
+	}
+	
 	//CADASTRAR
 	public Optional<Usuario> CadastrarUsuario(Usuario usuario) {
 		Optional<Usuario> user = repository.findByUsuario(usuario.getUsuario());
