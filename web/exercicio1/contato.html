@@ -4,39 +4,61 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+        <link rel="shortcut icon" href="assets/img/eu.jpg">
         <title>尺ㄖ丂乇ㄖ | Contato</title>
     </head>
     <body>
         <header>
-            <span>尺ㄖ丂乇ㄖ's hot site</span>
+            <a href="index.html" class="roseo">💀 尺ㄖ丂乇ㄖ 💀</a>
             <nav>
                 <ul>
-                    <li><a href="index.html">Sobre mim</a></li>
-                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="index.html">⛓ Início</a></li>
+                    <li><a href="contato.html">🕷 Contato</a></li>
                 </ul>
             </nav>
         </header>
-        <h1>Fale com 尺ㄖ丂乇ㄖ</h1>
-        <form>
-            <table>
-                <tr>
-                    <td><label for="nome">Nome</label></td>
-                    <td><input type="text" id="nome" placeholder="ex: Rodrigo Roseo"></td>
-                </tr>
-                <tr>
-                    <td><label for="email">E-mail</label></td>
-                    <td><input type="email" id="email" placeholder="rodrigo.roseo@gmail.com"></td>
-                </tr>
-                <tr>
-                    <td><label for="assunto">Assunto</label></td>
-                    <td><textarea name ="assunto" id="assunto" cols="60" rows="5" placeholder="Manda um salve"></textarea></td>
-                </tr>
-                <tr><td><input type="submit"></td><td></td><td><input type="reset"></td></tr>
-            </table>
-            <h2>Endereço</h2>
-            <p>Praça Franklin Roosevelt</p>
-            <p>São Paulo - SP</p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.556015734509!2d-46.64881154890392!3d-23.548466066927396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce584c061c1e03%3A0x59e38971f36f9c69!2sPra%C3%A7a%20Franklin%20Roosevelt!5e0!3m2!1spt-BR!2sbr!4v1631804137113!5m2!1spt-BR!2sbr" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </form>
+        <div class="titulo"> <!-- CONTAINER -->
+            <h1 class="h1">Contato</h1>
+        </div>
+        <section>
+            <h2 class="h2">Online</h2>
+            <h3 class="h3">Mande uma mensagem</h3>
+            <article>
+                <div class="container-row"> <!-- CONTAINER -->
+                    <div>
+                        <img src="assets/img/carteiro.png" alt="Esqueleto carteiro" title="Postman skeleton" class="img-contato" >
+                    </div>
+                    <div>
+                        <form>
+                            <span class="roseo">尺ㄖ丂乇ㄖ</span>
+                            <p>
+                                <label for="nome"></label>
+                                <input type="text" class="campo" id="nome" placeholder="Nome">
+                            </p>
+                            <p>
+                                <label for="email"></label>
+                                <input type="email" class="campo" id="email" placeholder="E-mail">
+                            </p>
+                            <p>
+                                <label for="assunto"></label>
+                                <textarea name ="assunto" class="campo" id="assunto" cols="60" rows="5" placeholder="Mensagem"></textarea>
+                            </p>
+                            <p><input type="submit" class="enviar" value="Enviar"></p>
+                        </form>
+                    </div>
+                </div>
+            </article>
+            <article>
+                <h4 class="h4">Endereço</h4>
+                <h5 class="h5">São Paulo - SP | Praça Santo Eduardo - Vila Maria Baixa</h5>
+                <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.484679659542!2d-46.589408348904634!3d-23.515063865695467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5f365f7a223f%3A0x44d2439ffcbb69f!2sPra%C3%A7a%20Santo%20Eduardo%20-%20Vila%20Maria%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1631895881111!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
+            </article>
+        </section>
+        
+        <!-- FOOTER -->
+        <footer>
+            
+        </footer>
     </body>
 </html>
