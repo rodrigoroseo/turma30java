@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" media="screen" />
-        <link rel="shortcut icon" href="assets/img/eu.jpg">
+        <link rel="shortcut icon" href="assets/img/favicon.png">
         <title>尺ㄖ丂乇ㄖ | Contato</title>
     </head>
     <body>
@@ -19,7 +19,7 @@
             </nav>
         </header>
         <div class="titulo"> <!-- CONTAINER -->
-            <h1 class="h1">Contato</h1>
+            <h1 class="h1">🦇 Contato 🦇</h1>
         </div>
         <section>
             <h2 class="h2">Online</h2>
@@ -27,35 +27,69 @@
             <article>
                 <div class="container-row"> <!-- CONTAINER -->
                     <div>
-                        <img src="assets/img/carteiro.png" alt="Esqueleto carteiro" title="Postman skeleton" class="img-contato" >
+                        <!-- imagem fonte: https://www.deviantart.com/thearashi/art/Crafty-FC-Mortimer-the-Postman-815783241 -->
+                        <img src="assets/img/carteiro.png" alt="Esqueleto carteiro" title="Deadex" class="img-contato">
                     </div>
                     <div>
                         <form>
                             <span class="roseo">尺ㄖ丂乇ㄖ</span>
                             <p>
                                 <label for="nome"></label>
-                                <input type="text" class="campo" id="nome" placeholder="Nome">
+                                <input type="text" class="campo" id="nome" placeholder="Nome" onkeyup='validaNome()' required>
+                                <span id="txtNome" class="txtForm"></span>
                             </p>
                             <p>
                                 <label for="email"></label>
-                                <input type="email" class="campo" id="email" placeholder="E-mail">
+                                <input type="email" class="campo" id="email" placeholder="E-mail" onkeyup='validaEmail()' required>
+                                <span id="txtEmail" class="txtForm"></span>
                             </p>
                             <p>
                                 <label for="assunto"></label>
-                                <textarea name ="assunto" class="campo" id="assunto" cols="60" rows="5" placeholder="Mensagem"></textarea>
+                                <textarea name ="assunto" class="campo" id="assunto" cols="60" rows="5" placeholder="Mensagem" style="resize: none" onkeyup='validaAssunto()' required></textarea>
+                                <span id="txtAssunto" class="txtForm"></span>
                             </p>
-                            <p><input type="submit" class="enviar" value="Enviar"></p>
+                            <p>
+                                <button class="enviar" onclick="enviar()">Enviar</button>
+                            </p>
+                            <span id="erroEnvio" style="display: none; position: absolute; color: red; background-color: rgba(0, 0, 0, 0.6); width: 20vw; height: 22.7vw; margin-top: -22.7vw;">
+                                <div class="container-col" style=" height: 100%; justify-content: center;">
+                                    <div style="background-color: #222; width: 80; margin: 10%;">
+                                        <p class="h5" style="color: red">Preencha os campos corretamente:</p>
+                                        <ul id="listaErros"><li>a</li><li>a</li><li>a</li><li>a</li></ul>
+                                        <p><button class="enviar" onclick='minimizarSpamErro()'>Ok</button></p>
+                                    </div>
+                                </div>
+                            </span>
                         </form>
                     </div>
                 </div>
             </article>
             <article>
-                <h4  class="h4">Endereço</h4>
-                <h5 class="h5">São Paulo - SP | Praça Santo Eduardo - Vila Maria Baixa</h5>
-                <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.484679659542!2d-46.589408348904634!3d-23.515063865695467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5f365f7a223f%3A0x44d2439ffcbb69f!2sPra%C3%A7a%20Santo%20Eduardo%20-%20Vila%20Maria%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1631895881111!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
+                <h3 class="h4">Redes</h3>
+                <div class="container-row" style="justify-content: center;">
+                    <a href="https://github.com/rodrigoroseo" target="_blank" class="container-row" style="border-right: 0.2vw solid #222;">
+                        <img src="assets/img/github.png" alt="Esqueleto lutador" title="Pé na porta e soco na cara" class="icon">
+                        <h4 class="h5">GITHUB</h4>
+                    </a>
+                    <a href="https://www.linkedin.com/in/rodrigo-roseo-616330196/" target="_blank" class="container-row">
+                        <img src="assets/img/linkedin.png" alt="Esqueleto lutador" title="Pé na porta e soco na cara" class="icon">
+                        <h4 class="h5">Linkedin</h4>
+                    </a>
+                </div>
             </article>
         </section>
-        
+
+        <section>
+            <h2 class="h2">Presencial</h2>
+            <h3 class="h3">Endereço</h3>
+            <article>
+                <h5 class="h4">São Paulo - SP | Praça Santo Eduardo - Vila Maria Baixa</h5>
+                <iframe id="mapa" onmousemove="mapaZoom()" onmouseout="mapaNormal()" class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.484679659542!2d-46.589408348904634!3d-23.515063865695467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5f365f7a223f%3A0x44d2439ffcbb69f!2sPra%C3%A7a%20Santo%20Eduardo%20-%20Vila%20Maria%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1631895881111!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
+                <!-- imagem fonte: https://www.pngwing.com/pt/free-png-virif -->
+                <img onmousemove="mapaZoom()" style="width: 2vw; height: 2vw; display: inline; top:0" src="assets/img/mousehover.png" alt="Passe o mouse por cima do mapa" title="Passe o mouse por cima do mapa" class="">
+                <span onmousemove="mapaZoom()" style="position:relative; bottom:0.5vw; font-weight: bold; font-size: 0.7vw;">Passe o mouse</span>
+            </article>
+        </section>
         <!-- FOOTER -->
         <footer>
             <div>
@@ -67,5 +101,7 @@
                 <p>Todos os direitos reservados: Rodrigo Roseo &copy</p>
             </div>
         </footer>
+
+        <script src="assets/js/script.js"></script>
     </body>
 </html>
