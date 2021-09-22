@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Bootstrap</title>
+</head>
+
+<body>
+    <!--MENU-->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">Roseo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
+            aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="#carousel">Carousel</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="#cards">Cards</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="#textoevideo">Texto e vídeo</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="#contato">Contato</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Redes sociais
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="https://github.com/rodrigoroseo">Github</a>
+                        <a class="dropdown-item"
+                            href="https://www.linkedin.com/in/rodrigo-roseo-616330196/">Linkedin</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="https://br.pinterest.com/traficantedmiojo/_saved/">Pinterest</a>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+            </form>
+        </div>
+    </nav>
+    <!--/MENU-->
+
+    <!--JUMBOTRON-->
+    <div id="carousel" class="jumbotron jumbotron-fluid bg-danger mb-0">
+        <div class="container">
+            <h1 class="display-4">Artes por: Beebosloth</h1>
+            <p class="lead">Eu tenho uma tatuagem de uma das artes dele e pretendo fazer outra.</p>
+        </div>
+    </div>
+    <!--/JUMBOTRON-->
+
+    <!--CARROSSEL-->
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="https://i.ytimg.com/vi/wWwMAaWCZbg/maxresdefault.jpg"
+                    alt="Primeiro Slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="https://i.ytimg.com/vi/_FQ499u_DKk/maxresdefault.jpg"
+                    alt="Segundo Slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="https://i.ytimg.com/vi/OGpgChOjASA/maxresdefault.jpg"
+                    alt="Terceiro Slide">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Próximo</span>
+        </a>
+    </div>
+    <!--/CARROSSEL-->
+
+    <!--JUMBOTRON-->
+    <div id="cards" class="jumbotron jumbotron-fluid bg-danger">
+        <div class="container">
+            <h1 class="display-4">Cards</h1>
+            <p class="lead">Uns cards ai</p>
+        </div>
+    </div>
+    <!--/JUMBOTRON-->
+
+    <div class="container">
+        <!--CARDS-->
+        <div class="card-columns">
+            <div class="card">
+                <img class="card-img-top"
+                    src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22360%22%20height%3D%22160%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20160%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17c08cf21a8%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A18pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17c08cf21a8%22%3E%3Crect%20width%3D%22360%22%20height%3D%22160%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22133.953125%22%20y%3D%2288.1%22%3E360x160%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+                    alt="Imagem de capa do card">
+                <div class="card-body">
+                    <h5 class="card-title">Título do card que quebra em uma nova linha</h5>
+                    <p class="card-text">Este é um card mais longo com suporte a texto embaixo, que funciona como uma
+                        introdução a um conteúdo adicional. Este conteúdo é um pouco maior.</p>
+                </div>
+            </div>
+            <div class="card p-3">
+                <blockquote class="blockquote mb-0 card-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                    <footer class="blockquote-footer">
+                        <small class="text-muted">
+                            Alguém famoso em <cite title="Título da fonte">Título da fonte</cite>
+                        </small>
+                    </footer>
+                </blockquote>
+            </div>
+            <div class="card">
+                <img class="card-img-top"
+                    src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22360%22%20height%3D%22160%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20160%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17c08cf21ae%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A18pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17c08cf21ae%22%3E%3Crect%20width%3D%22360%22%20height%3D%22160%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22133.953125%22%20y%3D%2288.1%22%3E360x160%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+                    alt="Imagem de capa do card">
+                <div class="card-body">
+                    <h5 class="card-title">Título do card</h5>
+                    <p class="card-text">Este é um card com suporte a texto embaixo, que funciona como uma introdução a
+                        um conteúdo adicional.</p>
+                    <p class="card-text"><small class="text-muted">Atualizados 3 minutos atrás</small></p>
+                </div>
+            </div>
+            <div class="card bg-dark text-danger text-center p-3">
+                <blockquote class="blockquote mb-0">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
+                    <footer class="blockquote-footer">
+                        <small>
+                            Alguém famoso em <cite title="Título da fonte">Título da fonte</cite>
+                        </small>
+                    </footer>
+                </blockquote>
+            </div>
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title text-danger">Título do card</h5>
+                    <p class="card-text">Este é um card com suporte a texto embaixo, que funciona como uma introdução a
+                        um conteúdo adicional.</p>
+                    <p class="card-text"><small class="text-muted">Atualizados 3 minutos atrás</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img"
+                    src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22360%22%20height%3D%22260%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20260%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17c08cf21b2%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A18pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17c08cf21b2%22%3E%3Crect%20width%3D%22360%22%20height%3D%22260%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22133.953125%22%20y%3D%22138.1%22%3E360x260%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+                    alt="Imagem do card">
+            </div>
+            <div class="card p-3 text-right">
+                <blockquote class="blockquote mb-0">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                    <footer class="blockquote-footer">
+                        <small class="text-muted">
+                            Alguém famoso em <cite title="Título da fonte">Título da fonte</cite>
+                        </small>
+                    </footer>
+                </blockquote>
+            </div>
+            <div class="card bg-danger">
+                <div class="card-body">
+                    <h5 class="card-title text-white">Título do card</h5>
+                    <p class="card-text">Este é um card maior com suporte a texto embaixo, que funciona como uma
+                        introdução a um conteúdo adicional. Este card tem o conteúdo ainda maior que o primeiro, para
+                        mostrar a altura igual, em ação.</p>
+                    <p class="card-text"><small class="text-muted"><span class="text-white">Atualizados 3 minutos
+                                atrás</span></small></p>
+                </div>
+            </div>
+        </div>
+        <!--/CARDS-->
+    </div>
+    <!--JUMBOTRON-->
+    <div id="textoevideo" class="jumbotron jumbotron-fluid bg-danger">
+        <div class="container">
+            <h1 class="display-4">Texto e vídeo</h1>
+            <p class="lead">Lorem e um vídeo curto</p>
+        </div>
+    </div>
+    <!--/JUMBOTRON-->
+    <div class="container">
+        <!--TEXTO E VIDEO-->
+        <div class="row mt-5 mb-5 d-flex justify-content-center">
+            <div class="col-md-6">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui cupiditate facilis necessitatibus. Vel
+                    eos, accusantium iure aut, odio labore obcaecati autem quae illo quisquam magnam quidem excepturi,
+                    ullam molestiae qui?</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto, voluptatum repellat ratione, unde
+                    inventore, commodi rerum repellendus praesentium vero nobis aut sapiente incidunt? At saepe,
+                    necessitatibus magnam reprehenderit sit doloremque.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, sunt dicta autem, quis deleniti
+                    quia incidunt numquam et nesciunt neque porro delectus! Debitis, saepe vitae? Totam possimus eum non
+                    perspiciatis?</p>
+            </div>
+            <div class="col-md-6">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/zWkR4bOC7oY"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel molestias obcaecati ea praesentium quam
+                    ducimus ipsam? Consequatur exercitationem, mollitia soluta, sunt praesentium voluptatibus sapiente
+                    aut, quaerat dolorem quos est iure!</p>
+            </div>
+            <div class="col-md-4">
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae quis placeat dolorum odio
+                    eligendi cupiditate voluptatum autem iure, porro hic dolorem ipsa quibusdam sed veritatis ullam
+                    eveniet maiores temporibus ut.</p>
+            </div>
+            <div class="col-md-4">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus distinctio maxime doloremque
+                    dolores veritatis a id dolorem neque! Reiciendis accusamus consequatur velit reprehenderit deleniti
+                    debitis aspernatur odio, quidem eius ex.</p>
+            </div>
+        </div>
+        <div class="alert alert-danger" role="alert">
+            ALERTA! (isso é um alerta)
+        </div>
+        <!--/TEXTO E VIDEO-->
+    </div>
+    <!--JUMBOTRON-->
+    <div id="contato" class="jumbotron jumbotron-fluid bg-danger">
+        <div class="container">
+            <h1 class="display-4">Contato</h1>
+            <p class="lead">Opções de contato</p>
+        </div>
+    </div>
+    <!--/JUMBOTRON-->
+    <div class="container">
+        <!--FORM CONTATO-->
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <h4 class="text-center">Fale comigo</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Nome</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                            placeholder="ex: Rodrigo Roseo">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput2">Endereço de email</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput2"
+                            placeholder="nome@exemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Exemplo de textarea</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <div class="form-group d-flex justify-content-end">
+                        <button class="btn btn-outline-success">Enviar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <iframe class="w-100 h-100" frameborder="0"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.484679659542!2d-46.589408348904634!3d-23.515063865695467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5f365f7a223f%3A0x44d2439ffcbb69f!2sPra%C3%A7a%20Santo%20Eduardo%20-%20Vila%20Maria%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1631895881111!5m2!1spt-BR!2sbr"
+                    allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <div class="alert alert-warning" role="alert">
+                    Aviso
+                </div>
+            </div>
+        </div>
+        <!--/FORM CONTATO-->
+
+        <!--RODAPE-->
+        <hr>
+        <footer>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Todos os direitos reservados: Rodrigo Roseo &copy</p>
+                </div>
+                <div class="col-md-3">
+                    <p>
+                        <img src="https://camo.githubusercontent.com/399f4b41477e6b7f99edfdba9ad24837072e99528f5a4cff1671cde8e7a0c214/68747470733a2f2f7075786c2e696f2f696d672f6c6f676f2f6769746875622e737667"
+                            alt="" style="width: 25px; height: 25px;">
+                        <a href="https://github.com/rodrigoroseo">Github</a>
+                    </p>
+                </div>
+                <div class="col-md-3">
+                    <p>
+                        <img src="https://logospng.org/download/linkedin/logo-linkedin-icon-256.png" alt=""
+                            style="width: 25px; height: 25px;">
+                        <a href="https://www.linkedin.com/in/rodrigo-roseo-616330196/">Linkedin</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+        <!--/RODAPE-->
+    </div>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
