@@ -61,7 +61,10 @@ public class UsuarioService {
 				String authHeader = "Basic " + new String(encodeAuth);
 				
 				user.get().setToken(authHeader);
+				user.get().setId(usuario.get().getId());
 				user.get().setNome(usuario.get().getNome());
+				user.get().setFoto(usuario.get().getFoto());
+				user.get().setTipo(usuario.get().getTipo());
 				
 				return user;
 			}
@@ -73,11 +76,6 @@ public class UsuarioService {
 	//ATUALIZAR
 	public Optional<Usuario> atualizarUsuario(Usuario usuario) {
 		if (repository.findById(usuario.getId()).isPresent()) {
-			int idade = Period.between(usuario.getDataNascimento(), LocalDate.now()).getYears();
-	
-			if (idade < 18) {
-				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O Usuário é menor de idade!", null);
-			}
 			
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 	

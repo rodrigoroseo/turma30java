@@ -1,10 +1,8 @@
 package org.generation.blogPessoal.model;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +14,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -41,9 +38,9 @@ public class Usuario {
 	@Size(min = 8, message = "O atributo senha deve ter no mínimo 8 caracteres")
 	private String senha;
 	
-	@Column(name = "dt_nascimento")
-	@JsonFormat(pattern="yyyy-MM-dd")
-    private LocalDate dataNascimento;
+	private String foto;
+	
+	private String tipo;
 	
 	@OneToMany (mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
@@ -51,12 +48,11 @@ public class Usuario {
 	
 	//CONSTRUTOR -----------------------------------------------------------
 	
-	public Usuario(long id, String nome, String usuario, String senha, LocalDate dataNascimento) {
+	public Usuario(long id, String nome, String usuario, String senha) {
 		this.id = id;
 		this.nome = nome;
 		this.usuario = usuario;
 		this.senha = senha;
-		this.dataNascimento = dataNascimento;
 	}
 	public Usuario() {}
 	
@@ -94,12 +90,20 @@ public class Usuario {
 		this.senha = senha;
 	}
 	
-	//DATA NASCIMENTO
-	public LocalDate getDataNascimento() {
-		return dataNascimento;
+	//FOTO
+	public String getFoto() {
+		return foto;
 	}
-	public void setDataNascimento(LocalDate dataNascimento) {
-		this.dataNascimento = dataNascimento;
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+		
+	//TIPO
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 	//POSTAGEM

@@ -2,8 +2,6 @@ package org.generation.blogPessoal.model;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -32,8 +30,7 @@ public class UsuarioTest {
 	@BeforeEach
 	public void start() {
 
-		LocalDate data = LocalDate.parse("2000-07-22", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		usuario = new Usuario(0L, "João da Silva", "joao@email.com.br", "13465278", data);
+		usuario = new Usuario(0L, "João da Silva", "joao@email.com.br", "13465278");
 
 	}
 
